@@ -1,11 +1,18 @@
-﻿namespace Alvarez_ExamenProgreso3;
+﻿using Alvarez_ExamenProgreso3.Services;
+using Alvarez_ExamenProgreso3.ViewModels;
 
-public partial class App : Application
+namespace Alvarez_ExamenProgreso3
 {
-	public App()
-	{
-		InitializeComponent();
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+            var apiService = new ApiService();
+            var mainViewModel = new MainViewModel(apiService);
+
+            MainPage = new NavigationPage(new MainPage { BindingContext = mainViewModel });
+        }
+    }
 }
